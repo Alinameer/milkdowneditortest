@@ -24,3 +24,53 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.milkdown {
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+/* Direct CSS approach for RTL in the ProseMirror editor */
+.ProseMirror p,
+.ProseMirror h1,
+.ProseMirror h2,
+.ProseMirror h3,
+.ProseMirror h4,
+.ProseMirror h5,
+.ProseMirror h6,
+.ProseMirror li,
+.ProseMirror ul,
+.ProseMirror ol,
+.ProseMirror blockquote,
+.ProseMirror pre,
+.ProseMirror code,
+.ProseMirror div,
+.ProseMirror span,
+.ProseMirror strong,
+.ProseMirror em,
+.ProseMirror mark,
+.ProseMirror a,
+.ProseMirror table,
+.ProseMirror tr,
+.ProseMirror td,
+.ProseMirror th,
+.ProseMirror input,
+.ProseMirror label,
+.ProseMirror figure,
+.ProseMirror figcaption {
+  unicode-bidi: plaintext;
+}
+
+/* Custom styles for Arabic text */
+[dir="rtl"] {
+  text-align: right;
+}
+
+/* Auto-detect Arabic script and apply RTL */
+.ProseMirror p:has(:lang(ar)),
+.ProseMirror p:has([\u0600-\u06FF]) {
+  direction: rtl;
+  text-align: right;
+}
