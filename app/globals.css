@@ -40,9 +40,7 @@ body {
 .ProseMirror h4,
 .ProseMirror h5,
 .ProseMirror h6,
-.ProseMirror li,
-.ProseMirror ul,
-.ProseMirror ol,
+.ProseMirror b,
 .ProseMirror blockquote,
 .ProseMirror pre,
 .ProseMirror code,
@@ -52,25 +50,63 @@ body {
 .ProseMirror em,
 .ProseMirror mark,
 .ProseMirror a,
-.ProseMirror table,
-.ProseMirror tr,
-.ProseMirror td,
-.ProseMirror th,
-.ProseMirror input,
-.ProseMirror label,
-.ProseMirror figure,
 .ProseMirror figcaption {
   unicode-bidi: plaintext;
 }
 
+/* Add unicode-bidi for list elements */
+.milkdown-list-item-block,
+.milkdown-list-item-block .content-dom,
+.list-item,
+.children {
+  unicode-bidi: plaintext;
+}
+
 /* Custom styles for Arabic text */
+/* styles/globals.css or app/globals.css */
+
+.ProseMirror ul,
+.ProseMirror ol,
+.ProseMirror li,
+.ProseMirror table,
+.ProseMirror th,
+.ProseMirror td {
+  direction: inherit;
+  text-align: inherit;
+}
+
+[dir="rtl"] {
+  text-align: right;
+}
+[dir="ltr"] {
+  text-align: left;
+}
+
+/* /styles/globals.css */
+
+/* Basic styling for Milkdown container */
+.milkdown {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
 [dir="rtl"] {
   text-align: right;
 }
 
-/* Auto-detect Arabic script and apply RTL */
-.ProseMirror p:has(:lang(ar)),
-.ProseMirror p:has([\u0600-\u06FF]) {
+[dir="rtl"] ul,
+[dir="rtl"] ol {
   direction: rtl;
   text-align: right;
+  list-style-position: inside;
+}
+
+[dir="rtl"] ol {
+  list-style-type: arabic-indic;
+}
+
+[dir="rtl"] li {
+  margin-left: 0;
+  margin-right: 1em;
 }
